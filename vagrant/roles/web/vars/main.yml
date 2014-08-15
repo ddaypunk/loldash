@@ -1,0 +1,16 @@
+---
+
+application_path: "/web/{{ application_name }}/"
+django_path: "{{ application_path }}/{{ django_project_name }}/"
+static_path: "{{ application_path }}/static/"
+media_path: "{{ application_path }}/media/"
+
+application_log_dir: "{{ application_path }}/logs/"
+application_log_file: "{{ application_log_dir }}/gunicorn_supervisor.log"
+nginx_access_log_file: "{{ application_log_dir }}/nginx_access.log"
+nginx_error_log_file: "{{ application_log_dir }}/nginx_error.log"
+
+requirements_file: "{{ django_path }}/requirements.txt"
+
+gunicorn_user: "{{ application_name }}"
+gunicorn_group: web
