@@ -71,3 +71,5 @@ target/
 # jsx compiler
 .module-cache/
 
+#sqlite
+*.sqlite*
