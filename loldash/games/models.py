@@ -59,11 +59,15 @@ class Team(object):
 
 
 class Game(models.Model):
+    ###########
+    # GameDto #
+    ###########
+
     # gameId    long    Game ID.
     id = models.IntegerField(primary_key=True)
 
     # createDate    long    Date that end game data was recorded, specified as epoch milliseconds.
-    create_date = models.DateField()
+    create_date = models.IntegerField()
 
     # gameMode  string  Game mode.
     # (legal values: CLASSIC, ODIN, ARAM, TUTORIAL, ONEFORALL, FIRSTBLOOD)
@@ -79,24 +83,40 @@ class Game(models.Model):
     #  FIRSTBLOOD_2x2, SR_6x6, URF, URF_BOT, NIGHTMARE_BOT)
     sub_type = models.CharField(max_length=50, choices=GameSubType.choices)
 
-    # invalid   boolean Invalid flag.
-    invalid = models.BooleanField()
-
     # mapId     int     Map ID.
     map_id = models.IntegerField()
 
+    # invalid   boolean Invalid flag.
+    invalid = models.BooleanField()
+
     class Meta:
         db_table = 'games'
+
+    @staticmethod
+    def from_lolapi(lolapi_game):
+        return Game(
+            id=lolapi_game['gameId'],
+            create_date=lolapi_game['createDate'],
+            game_mode=lolapi_game['gameMode'],
+            game_type=lolapi_game['gameType'],
+            sub_type=lolapi_game['subType'],
+            map_id=lolapi_game['mapId'],
+            invalid=lolapi_game['invalid'],
+        )
 
 
 class GamePlayer(models.Model):
     id = models.AutoField(primary_key=True)
 
-    # summonerId    long    Summoner ID.
-    summoner = models.ForeignKey(Summoner, related_name='games')
-
     # gameId    long    Game ID.
     game = models.ForeignKey(Game, related_name='players')
+
+    #############
+    # PlayerDto #
+    #############
+
+    # summonerId    long    Summoner ID.
+    summoner = models.ForeignKey(Summoner, related_name='games')
 
     # championId    int Champion ID associated with game.
     champion_id = models.IntegerField()
@@ -112,11 +132,11 @@ class GamePlayer(models.Model):
 class GameStat(models.Model):
     id = models.AutoField(primary_key=True)
 
-    # summonerId    long    Summoner ID.
-    summoner = models.ForeignKey(Summoner, related_name='game_stats')
-
     # gameId    long    Game ID.
     game = models.ForeignKey(Game, related_name='player_stats')
+
+    # summonerId    long    Summoner ID.
+    summoner = models.ForeignKey(Summoner, related_name='game_stats')
 
     ###########
     # GameDto #
