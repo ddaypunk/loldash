@@ -92,18 +92,6 @@ class Game(models.Model):
     class Meta:
         db_table = 'games'
 
-    @staticmethod
-    def from_lolapi(lolapi_game):
-        return Game(
-            id=lolapi_game['gameId'],
-            create_date=lolapi_game['createDate'],
-            game_mode=lolapi_game['gameMode'],
-            game_type=lolapi_game['gameType'],
-            sub_type=lolapi_game['subType'],
-            map_id=lolapi_game['mapId'],
-            invalid=lolapi_game['invalid'],
-        )
-
 
 class GamePlayer(models.Model):
     id = models.AutoField(primary_key=True)
@@ -132,11 +120,7 @@ class GamePlayer(models.Model):
 class GameStat(models.Model):
     id = models.AutoField(primary_key=True)
 
-    # gameId    long    Game ID.
-    game = models.ForeignKey(Game, related_name='player_stats')
-
-    # summonerId    long    Summoner ID.
-    summoner = models.ForeignKey(Summoner, related_name='game_stats')
+    player = models.ForeignKey(GamePlayer, related_name='game_stat')
 
     ###########
     # GameDto #
