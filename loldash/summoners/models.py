@@ -15,6 +15,8 @@ class Summoner(models.Model):
 
     # summonerid    long    Summoner ID.
     id = models.IntegerField(primary_key=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     # name    string    Summoner Name.
     name = models.CharField(max_length=100)
@@ -71,6 +73,8 @@ class SummonerStats(models.Model):
     # 503    Service Unavailable
 
     id = models.AutoField(primary_key=True)
+    created_on = models.DateTimeField(auto_now_add=True)
+    updated_on = models.DateTimeField(auto_now=True)
 
     #############################
     # PlayerStatsSummaryListDto #
@@ -88,7 +92,7 @@ class SummonerStats(models.Model):
 
     # losses    int    Number of loses for this queue type
     # Return for rankded queue types only
-    losses = models.IntegerField()
+    losses = models.IntegerField(null=True)
 
     #modifyDate    long    Date stats were last modified specified as epoch milliseconds
     modify_date = models.IntegerField()
@@ -100,7 +104,7 @@ class SummonerStats(models.Model):
     player_stat_summary_type = models.CharField(max_length=50, choices=StatSummaryType.choices)
     
     # wins    int    Number of wins for this queue type.
-    wins = models.IntegerField()
+    wins = models.IntegerField(null=True)
 
     ######################
     # AggregatedStatsDto #
@@ -109,176 +113,176 @@ class SummonerStats(models.Model):
 
     ### Dominion Only Stat Fields ###
     # averageAssists    int    Dominion only.
-    avg_assists = models.IntegerField()
+    avg_assists = models.IntegerField(null=True)
 
     # averageChampionsKilled    int    Dominion only.
-    avg_champions_killed = models.IntegerField()
+    avg_champions_killed = models.IntegerField(null=True)
 
     # averageCombatPlayerScore    int    Dominion only.
-    avg_combat_player_score = models.IntegerField()
+    avg_combat_player_score = models.IntegerField(null=True)
 
     # averageNodeCaptures    int    Dominion only.
-    avg_node_capture = models.IntegerField()
+    avg_node_capture = models.IntegerField(null=True)
 
     # averageNodeCaptureAssist    int    Dominion only.
-    avg_node_capture_assist = models.IntegerField()
+    avg_node_capture_assist = models.IntegerField(null=True)
 
     # averageNodeNeutralize    int    Dominion only.
-    avg_node_neutralize = models.IntegerField()
+    avg_node_neutralize = models.IntegerField(null=True)
 
     # averageNodeNeutralizeAssist    int    Dominion only.
-    avg_node_neutralize_assist = models.IntegerField()
+    avg_node_neutralize_assist = models.IntegerField(null=True)
 
     # averageNumDeaths    int    Dominion only.
-    avg_num_deaths = models.IntegerField()
+    avg_num_deaths = models.IntegerField(null=True)
 
     # averageObjectivePlayerScore    int    Dominion only.
-    avg_objective_player_score = models.IntegerField()
+    avg_objective_player_score = models.IntegerField(null=True)
 
     # averageTeamObjective    int    Dominion only.
-    avg_team_objective = models.IntegerField()
+    avg_team_objective = models.IntegerField(null=True)
 
     # averageTotalPlayerScore    int    Dominion only.
-    avg_total_player_score = models.IntegerField()
+    avg_total_player_score = models.IntegerField(null=True)
 
     # maxAssists    int    Dominion only.
-    max_assists = models.IntegerField()
+    max_assists = models.IntegerField(null=True)
 
     # maxCombatPlayerScore    int    Dominion only.
-    max_combat_player_score = models.IntegerField()
+    max_combat_player_score = models.IntegerField(null=True)
 
     # maxNodeCaptureScore    int    Dominion only.
-    max_node_capture = models.IntegerField()
+    max_node_capture = models.IntegerField(null=True)
 
     # maxNodeCaptureAssist    int    Dominion only.
-    max_node_capture_assist = models.IntegerField()
+    max_node_capture_assist = models.IntegerField(null=True)
     
     # maxNodeNeutralize    int    Dominion only.
-    max_node_neutralize = models.IntegerField()
+    max_node_neutralize = models.IntegerField(null=True)
 
     # maxNodeNeutralizeAssist    int    Dominion only.
-    max_node_neutralize_assist = models.IntegerField()
+    max_node_neutralize_assist = models.IntegerField(null=True)
 
     # maxObjectivePlayerScore    int    Dominion only.
-    max_objective_player_score = models.IntegerField()
+    max_objective_player_score = models.IntegerField(null=True)
 
     # maxTeamObjective    int    Dominion only.
-    max_team_objective = models.IntegerField()
+    max_team_objective = models.IntegerField(null=True)
 
     # maxTotalPlayerScore    int    Dominion only.
-    max_total_player_score = models.IntegerField()
+    max_total_player_score = models.IntegerField(null=True)
 
     # totalNodeCapture    int    Dominion only.
-    total_node_capture = models.IntegerField()
+    total_node_capture = models.IntegerField(null=True)
 
     # totalNodeNeutralize    int    Dominion only.
-    total_node_neutralize = models.IntegerField()
+    total_node_neutralize = models.IntegerField(null=True)
 
 
     ### Ranked Only Stat Fields ###
     # maxNumDeaths    int    Only returned for ranked statistics
-    max_num_deaths = models.IntegerField()
+    max_num_deaths = models.IntegerField(null=True)
 
     # totalDeathsPerSession    int    Only returned for ranked statistics
-    total_deaths_per_session = models.IntegerField()
+    total_deaths_per_session = models.IntegerField(null=True)
 
 
     ### General Stat Fields ###
     # botGamesPlayed    int
-    bot_games_played = models.IntegerField()
+    bot_games_played = models.IntegerField(null=True)
 
     # killingSpree    int
-    killing_spree = models.IntegerField()
+    killing_spree = models.IntegerField(null=True)
 
     # maxChampionsKilled    int
-    max_champion_kills = models.IntegerField()
+    max_champion_kills = models.IntegerField(null=True)
 
     # maxLargestCriticalStrike    int
-    max_largest_critical_strike = models.IntegerField()
+    max_largest_critical_strike = models.IntegerField(null=True)
 
     # maxLargestKillingSpree    int
-    max_largest_killing_spree = models.IntegerField()
+    max_largest_killing_spree = models.IntegerField(null=True)
 
     # maxTimePlayed    int
-    max_time_played = models.IntegerField()
+    max_time_played = models.IntegerField(null=True)
 
     # maxTimeSpentLiving    int
-    max_time_spent_living = models.IntegerField()
+    max_time_spent_living = models.IntegerField(null=True)
 
     # mostChampionKillsPerSession    int
-    most_champion_kills_per_session = models.IntegerField()
+    most_champion_kills_per_session = models.IntegerField(null=True)
 
     # mostSpellsCast   int
-    most_spells_cast = models.IntegerField()
+    most_spells_cast = models.IntegerField(null=True)
 
     # normalGamesPlayed    int
-    normal_games_played = models.IntegerField()
+    normal_games_played = models.IntegerField(null=True)
 
     # rankedPremageGamesPlayed    int
-    ranked_premade_games_played = models.IntegerField()
+    ranked_premade_games_played = models.IntegerField(null=True)
 
     # rankedSoloGamesPlayed   int
-    ranked_solo_games_played = models.IntegerField()
+    ranked_solo_games_played = models.IntegerField(null=True)
 
     # totalAssists    int
-    total_assists = models.IntegerField()
+    total_assists = models.IntegerField(null=True)
 
     # totalChampionKills    int
-    total_champion_kills = models.IntegerField()
+    total_champion_kills = models.IntegerField(null=True)
 
     # totalDamageDealt    int
-    total_damage_dealt = models.IntegerField()
+    total_damage_dealt = models.IntegerField(null=True)
 
     # totalDamageTaken    int
-    total_damage_taken = models.IntegerField()
+    total_damage_taken = models.IntegerField(null=True)
 
     # totalDoubleKIlls    int
-    total_double_kills = models.IntegerField()
+    total_double_kills = models.IntegerField(null=True)
 
     # totalFirstBlood    int
-    total_first_blood = models.IntegerField()
+    total_first_blood = models.IntegerField(null=True)
 
     # totalGoldEarned    int
-    total_gold_earned = models.IntegerField()
+    total_gold_earned = models.IntegerField(null=True)
 
     # totalHeal    int
-    total_heal = models.IntegerField()
+    total_heal = models.IntegerField(null=True)
 
     # totalMagicDamageDealt    int
-    total_magic_damage_dealt = models.IntegerField()
+    total_magic_damage_dealt = models.IntegerField(null=True)
 
     # totalMinionKills    int
-    total_minion_kills = models.IntegerField()
+    total_minion_kills = models.IntegerField(null=True)
 
     # totalNeutralMinionsKilled    int
-    total_neutral_minions_killed = models.IntegerField()
+    total_neutral_minions_killed = models.IntegerField(null=True)
 
     # totalPentaKills    int
-    total_penta_kills = models.IntegerField()
+    total_penta_kills = models.IntegerField(null=True)
 
     # totalPhysicalDamageDealt    int
-    total_physical_damage_dealt = models.IntegerField()
+    total_physical_damage_dealt = models.IntegerField(null=True)
 
     # totalQuadraKills    int
-    total_quadra_kills = models.IntegerField()
+    total_quadra_kills = models.IntegerField(null=True)
 
     # totalSessionsLost    int
-    total_sessions_lost = models.IntegerField()
+    total_sessions_lost = models.IntegerField(null=True)
 
     # totalSessionsPlayed    int
-    total_sessions_played = models.IntegerField()
+    total_sessions_played = models.IntegerField(null=True)
 
     # totalSessionsWon    int
-    total_sessions_won = models.IntegerField()
+    total_sessions_won = models.IntegerField(null=True)
 
     # totalTripleKills    int
-    total_triple_kills = models.IntegerField()
+    total_triple_kills = models.IntegerField(null=True)
 
     # totalTurretsKilled    int
-    total_turrets_killed = models.IntegerField()
+    total_turrets_killed = models.IntegerField(null=True)
 
     # totalUnrealKills    int
-    total_unreal_kills = models.IntegerField()
+    total_unreal_kills = models.IntegerField(null=True)
 
 
 

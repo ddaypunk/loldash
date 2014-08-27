@@ -98,3 +98,13 @@ Temporary Items
 .apdisk
 =======
 .module-cache/
+
+# Andy Local
+andy_todo.txt
+git_workflow.txt
+loldash_notes.txt
+loldash_test_api_link.txt
+loldash/test.py
+examples/
+loldash_test_api_links.txt
+*.swp

@@ -87,7 +87,7 @@ class Game(models.Model):
     map_id = models.IntegerField()
 
     # invalid   boolean Invalid flag.
-    invalid = models.BooleanField()
+    invalid = models.BooleanField(default=None)
 
     class Meta:
         db_table = 'games'
@@ -143,7 +143,7 @@ class GameStat(models.Model):
     ###########
 
     # level int Level.
-    level = models.IntegerField()
+    game_level = models.IntegerField()
 
     # spell1    int ID of first summoner spell.
     spell_1_id = models.IntegerField()
@@ -231,7 +231,7 @@ class GameStat(models.Model):
     legendary_items_created = models.IntegerField()
 
     # level int
-    level = models.IntegerField()
+    stat_level = models.IntegerField()
 
     # magicDamageDealtPlayer    int
     magic_damage_dealt_player = models.IntegerField()
@@ -258,7 +258,7 @@ class GameStat(models.Model):
     neutral_minions_killed_your_jungle = models.IntegerField()
 
     # nexusKilled   boolean Flag specifying if the summoner got the killing blow on the nexus.
-    nexus_killed = models.BooleanField()
+    nexus_killed = models.BooleanField(default=None)
 
     # nodeCapture   int
     node_capture = models.IntegerField()
@@ -384,7 +384,7 @@ class GameStat(models.Model):
     ward_placed = models.IntegerField()
 
     # win   boolean Flag specifying whether or not this game was won.
-    win = models.BooleanField()
+    win = models.BooleanField(default=None)
 
     class Meta:
         db_table = 'game_stats'
